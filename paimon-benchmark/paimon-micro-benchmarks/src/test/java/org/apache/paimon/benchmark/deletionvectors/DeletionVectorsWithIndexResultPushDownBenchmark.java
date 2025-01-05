@@ -67,7 +67,7 @@ public class DeletionVectorsWithIndexResultPushDownBenchmark {
     private static final int VALUE_COUNT = 20;
 
     private final int rowCount = 1000000;
-    java.nio.file.Path tempFile = new File("D:\\paimon").toPath();
+    java.nio.file.Path tempFile = new File("/halo/workspaces/for_remote/tmp").toPath();
 
     private final RandomDataGenerator random = new RandomDataGenerator();
 
@@ -80,14 +80,14 @@ public class DeletionVectorsWithIndexResultPushDownBenchmark {
         int[] indexBounds = new int[] {800000};
         for (int pkBound : pkBounds) {
             for (int indexBound : indexBounds) {
-                //                Table table =
-                //                        prepareData(
-                //                                pkBound,
-                //                                indexBound,
-                //                                parquet(),
-                //                                String.format("parquet_%s_%s", pkBound,
-                // indexBound));
-                Table table = getTable(String.format("parquet_%s_%s", pkBound, indexBound));
+                                Table table =
+                                        prepareData(
+                                                pkBound,
+                                                indexBound,
+                                                parquet(),
+                                                String.format("parquet_%s_%s", pkBound,
+                 indexBound));
+//                Table table = getTable(String.format("parquet_%s_%s", pkBound, indexBound));
                 Map<String, Table> tables = new LinkedHashMap<>();
 
                 Map<String, String> p1 = new HashMap<>();
@@ -112,7 +112,7 @@ public class DeletionVectorsWithIndexResultPushDownBenchmark {
 
                 int[] values = new int[] {788897};
                 for (int i = 0; i < values.length; i++) {
-//                for (int i = 0; i < 10; i++) {
+                    //                for (int i = 0; i < 10; i++) {
                     //                    int value = random.nextInt(0, indexBound);
                     int value = values[i];
                     Predicate predicate = new PredicateBuilder(table.rowType()).equal(1, value);
